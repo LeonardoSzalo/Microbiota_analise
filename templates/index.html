@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Microbiota Intestinal</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 600px; margin: auto; }
+        h1 { text-align: center; color: #333; }
+        form { display: flex; flex-direction: column; gap: 15px; }
+        label { font-weight: bold; margin-bottom: 5px; display: block; }
+        input[type="file"] { border: 1px solid #ddd; padding: 8px; border-radius: 4px; background-color: #f9f9f9; }
+        button { background-color: #4CAF50; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; transition: background-color 0.3s ease; }
+        button:hover { background-color: #45a049; }
+        .footer { text-align: center; margin-top: 30px; color: #666; font-size: 0.9em; }
+
+        /* Estilos para o feedback de carregamento */
+        .loading-message { display: none; text-align: center; margin-top: 20px; font-style: italic; color: #555; }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #4CAF50;
+            animation: spin 1s ease infinite;
+            margin: 10px auto;
+            display: none; /* Escondido por padrão */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Análise de Microbiota Intestinal</h1>
+        <p>Faça o upload da sua base de dados de referência (CSV/Excel) e da amostra alvo (CSV/Excel) para obter as predições.</p>
+        <form action="/analyze" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+            <label for="reference_db">Base de Dados de Referência (CSV/Excel):</label>
+            <input type="file" name="reference_db" id="reference_db" accept=".csv, .xlsx, .xls" required>
+
+            <label for="target_sample">Amostra Alvo (CSV/Excel - um indivíduo):</label>
+            <input type="file" name="target_sample" id="target_sample" accept=".csv, .xlsx, .xls" required>
+
+            <button type="submit" id="analyzeButton">Analisar</button>
+            <div class="loading-message" id="loadingMessage">Processando... Por favor, aguarde.</div>
+            <div class="spinner" id="loadingSpinner"></div>
+        </form>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Análise de Microbiota. Todos os direitos reservados.</p>
+    </div>
+
+    <script>
+        function showLoading() {
+            document.getElementById('analyzeButton').disabled = true; // Desabilita o botão
+            document.getElementById('loadingMessage').style.display = 'block'; // Mostra a mensagem
+            document.getElementById('loadingSpinner').style.display = 'block'; // Mostra o spinner
+        }
+    </script>
+</body>
+</html>
