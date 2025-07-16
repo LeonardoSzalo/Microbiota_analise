@@ -1,4 +1,9 @@
 # Microbiota_analise
+Ferramenta de análise de microbiota intestinal que recebe uma tabela de composição de microbiota como referência e outra tabela de composição de microbiota intestinal do indivíduo alvo.
+
+As imagens representam a saída de uma análise realizada com base na composição da microbiota intestinal de crianças.
+
+
 
 
 <img width="955" height="914" alt="image" src="https://github.com/user-attachments/assets/c14f1ee9-2521-48b2-a0c6-e258b4d763d3" />
